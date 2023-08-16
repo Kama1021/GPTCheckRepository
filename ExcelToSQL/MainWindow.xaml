@@ -1,0 +1,50 @@
+﻿<Window x:Name="mainWindow" x:Class="ExcelToSQL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExcelToSQL"
+        mc:Ignorable="d"
+        AllowDrop="True"
+        Title="MainWindow" Height="600" Width="500" DragEnter="WindowDragEnter" DragLeave="WindowDragLeave" DragOver="WindowDragOver" Drop="WindowDrop">
+
+    <Grid x:Name="mainGrid" Background="#FFCAF0F8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <!--テキスト表示部分-->
+        <Grid x:Name="textGrid" Grid.Row="1" Grid.Column="1" IsHitTestVisible="true">
+            <ScrollViewer Foreground="{x:Null}">
+                <TextBox x:Name="codeBox" TextWrapping="Wrap" AcceptsReturn="True" Background="White" Text=".xlsxファイルをドロップしてね" SelectionTextBrush="White" Foreground="#FF03045E"/>
+            </ScrollViewer>
+            <!--プログレスバー表示部分-->
+            <Grid x:Name="progressGrid" Visibility="Hidden">
+                <ProgressBar Minimum="0"  x:Name="cellLoadProgressBar" Height="25" Width="400" Margin="35,46,35,340"/>
+                <TextBlock x:Name="cellLoadProgresPercentText" Margin="0,51,0,0" Text="" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock x:Name="cellLoadProgresText" Margin="0,25,0,0" Text="" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.494,-1.899"/>
+            </Grid>
+        </Grid>
+        <!--コンソール表示部分-->
+        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="ConsoleText" Background="#FFEBEBEB" Text=""/>
+        <!--ボタン設置部分-->
+        <Grid x:Name="buttonGrid" Grid.Row="4" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="copyButton" Grid.Column="0" Content="コピー" Background="#FF48CAE4" Foreground="White" FontSize="28" Click="ClickCopyButton"/>
+            <Button x:Name="exportButton" Grid.Column="2" Content="エクスポート" Background="#FF48CAE4" Foreground="White" FontSize="28" Click="ClickExportButton"/>
+        </Grid>
+    </Grid>
+</Window>
